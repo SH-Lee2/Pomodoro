@@ -1,5 +1,5 @@
 import { RadioGroup } from "@headlessui/react";
-import { useStyleState } from "../context/TimerContext";
+import { useTimerState } from "../context/TimerContext";
 
 const fonts = [
 	{
@@ -17,7 +17,7 @@ const fonts = [
 ];
 
 function FontList() {
-	const { font, setFont } = useStyleState();
+	const { font, setFont } = useTimerState();
 	return (
 		<div className="px-6 pt-6 md:px-10 ">
 			<div className="space-y-[15px] pb-6 border-b-[1px] border-[#E3E1E1] border-solid md:flex md:items-center md:justify-between md:space-y-0">

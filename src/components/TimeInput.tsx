@@ -1,5 +1,5 @@
 import { arrowDownIcon, arrowUpIcon } from "../assets";
-import { useStyleState } from "../context/TimerContext";
+import { useTimerState } from "../context/TimerContext";
 
 const TimeInput = () => {
 	const {
@@ -9,7 +9,7 @@ const TimeInput = () => {
 		setPomodoro,
 		setShortBreak,
 		setLongBreak,
-	} = useStyleState();
+	} = useTimerState();
 
 	const timeInput = [
 		{

@@ -26,7 +26,7 @@ type Action =
 	| { type: "SET_SHORT_BREAK"; shortBreak: number }
 	| { type: "SET_LONG_BREAK"; longBreak: number };
 
-const StyleStateContext = createContext<contextType | null>(null);
+const TimerStateContext = createContext<contextType | null>(null);
 
 const reducer = (state: State, action: Action): State => {
 	switch (action.type) {
@@ -98,14 +98,14 @@ export function StyleProvider({ children }: { children: React.ReactNode }) {
 		setLongBreak,
 	};
 	return (
-		<StyleStateContext.Provider value={value}>
+		<TimerStateContext.Provider value={value}>
 			{children}
-		</StyleStateContext.Provider>
+		</TimerStateContext.Provider>
 	);
 }
 
-export function useStyleState() {
-	const state = useContext(StyleStateContext);
+export function useTimerState() {
+	const state = useContext(TimerStateContext);
 	if (!state) throw new Error("Cannot find StyleStateContext"); // 유효하지 않을땐 에러를 발생
 	return state;
 }

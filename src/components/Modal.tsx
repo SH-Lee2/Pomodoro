@@ -4,7 +4,7 @@ import { closeIcon } from "../assets";
 import TimeInput from "./TimeInput";
 import FontList from "./FontList";
 import ColorList from "./ColorList";
-import { useStyleState } from "../context/TimerContext";
+import { useTimerState } from "../context/TimerContext";
 
 interface Props {
 	isOpen: boolean;
@@ -12,7 +12,7 @@ interface Props {
 }
 
 const Modal = ({ isOpen, setIsOpen }: Props) => {
-	const { font, color } = useStyleState();
+	const { font, color } = useTimerState();
 	const closeHandle = () => {
 		setIsOpen(false);
 	};

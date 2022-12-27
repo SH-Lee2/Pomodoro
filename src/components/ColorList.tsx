@@ -1,6 +1,6 @@
 import { RadioGroup } from "@headlessui/react";
 import { checkIcon } from "../assets";
-import { useStyleState } from "../context/TimerContext";
+import { useTimerState } from "../context/TimerContext";
 
 const colors = [
 	{
@@ -15,7 +15,7 @@ const colors = [
 ];
 
 const ColorList = () => {
-	const { color, setColor } = useStyleState();
+	const { color, setColor } = useTimerState();
 	return (
 		<div className="px-6 pt-4 space-y-[18px] md:px-10 md:pt-6">
 			<div className="space-y-[15px] pb-6 md:flex md:items-center md:justify-between md:space-y-0">

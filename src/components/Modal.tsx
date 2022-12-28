@@ -18,7 +18,7 @@ const Modal = ({ isOpen, setIsOpen }: Props) => {
 	};
 
 	return (
-		<Dialog open={isOpen} onClose={closeHandle} className={`z-50 font-${font}`}>
+		<Dialog open={isOpen} onClose={closeHandle} className={`z-50 ${font}`}>
 			<div className="fixed inset-0 bg-black/30" aria-hidden="true" />
 			<div className="fixed inset-0 flex items-center justify-center p-4">
 				<Dialog.Panel className="relative text-center mx-auto w-[20.4375rem] h-[34.3125rem] rounded-[15px] bg-white md:w-[33.75rem] md:h-[29rem] md:rounded-[25px]">
@@ -39,7 +39,7 @@ const Modal = ({ isOpen, setIsOpen }: Props) => {
 					<button
 						type="button"
 						onClick={closeHandle}
-						className={`absolute left-1/2 -translate-x-1/2 -bottom-6 bg-${color} text-white text-base leading-5 rounded-[26.5px] w-[8.75rem] py-4`}
+						className={`absolute left-1/2 -translate-x-1/2 -bottom-6 ${color} text-white text-base leading-5 rounded-[26.5px] w-[8.75rem] py-4`}
 					>
 						Apply
 					</button>

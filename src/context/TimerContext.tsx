@@ -1,7 +1,7 @@
 import React, { useReducer, useContext, createContext } from "react";
 
-export type Color = "salmon" | "baby-blue" | "heliotrope";
-export type Font = "kumbh-sans" | "roboto-slab" | "space-mono";
+export type Color = "bg-salmon" | "bg-baby-blue" | "bg-heliotrope";
+export type Font = "font-kumbh-sans" | "font-roboto-slab" | "font-space-mono";
 
 type State = {
 	color: Color;
@@ -55,6 +55,7 @@ const reducer = (state: State, action: Action): State => {
 				...state,
 				longBreak: state.longBreak + action.longBreak,
 			};
+
 		default:
 			throw new Error("Unhandled action");
 	}
@@ -62,8 +63,8 @@ const reducer = (state: State, action: Action): State => {
 
 export function StyleProvider({ children }: { children: React.ReactNode }) {
 	const [state, dispatch] = useReducer(reducer, {
-		color: "salmon",
-		font: "kumbh-sans",
+		color: "bg-salmon",
+		font: "font-kumbh-sans",
 		pomodoro: 25,
 		shortBreak: 5,
 		longBreak: 15,

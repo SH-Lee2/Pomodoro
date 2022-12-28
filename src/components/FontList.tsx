@@ -4,15 +4,15 @@ import { useTimerState } from "../context/TimerContext";
 const fonts = [
 	{
 		name: "Aa",
-		font: "kumbh-sans",
+		font: "font-kumbh-sans",
 	},
 	{
 		name: "Aa",
-		font: "roboto-slab",
+		font: "font-roboto-slab",
 	},
 	{
 		name: "Aa",
-		font: "space-mono",
+		font: "font-space-mono",
 	},
 ];
 
@@ -30,7 +30,7 @@ function FontList() {
 							<RadioGroup.Option key={font} value={font}>
 								{({ checked }) => (
 									<li
-										className={`list-none cursor-pointer flex items-center justify-center rounded-full w-[2.5rem] h-[2.5rem] font-${font} ${
+										className={`list-none cursor-pointer flex items-center justify-center rounded-full w-[2.5rem] h-[2.5rem] ${font} ${
 											checked
 												? "bg-black-russian text-white"
 												: "bg-silver text-hawkes-blue/70"

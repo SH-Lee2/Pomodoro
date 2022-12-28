@@ -4,13 +4,13 @@ import { useTimerState } from "../context/TimerContext";
 
 const colors = [
 	{
-		color: "salmon",
+		color: "bg-salmon",
 	},
 	{
-		color: "baby-blue",
+		color: "bg-baby-blue",
 	},
 	{
-		color: "heliotrope",
+		color: "bg-heliotrope",
 	},
 ];
 
@@ -28,7 +28,7 @@ const ColorList = () => {
 							<RadioGroup.Option key={color} value={color}>
 								{({ checked }) => (
 									<li
-										className={`list-none cursor-pointer flex items-center justify-center rounded-full w-[2.5rem] h-[2.5rem] bg-${color}`}
+										className={`list-none cursor-pointer flex items-center justify-center rounded-full w-[2.5rem] h-[2.5rem] ${color}`}
 									>
 										{checked && (
 											<img

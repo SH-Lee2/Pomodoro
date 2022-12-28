@@ -7,7 +7,7 @@ import { useTimerState } from "./context/TimerContext";
 
 function App() {
 	const [isOpen, setIsOpen] = useState(false);
-	const { font, mode } = useTimerState();
+	const { font } = useTimerState();
 	return (
 		<div
 			className={`flex flex-col items-center justify-around bg-hawkes-blue h-screen ${font}`}
@@ -20,7 +20,7 @@ function App() {
 				/>
 				<TabBar />
 			</div>
-			<Timer mode={mode} />
+			<Timer />
 			<button onClick={() => setIsOpen(true)}>
 				<img
 					src={settingIcon}

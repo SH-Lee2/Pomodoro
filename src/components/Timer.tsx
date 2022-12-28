@@ -40,8 +40,8 @@ const RenderTime = ({ remainingTime, play, setPlay, setKey }: Props) => {
 	);
 };
 
-const Timer = ({ mode }: { mode: Mode }) => {
-	const { color, pomodoro, shortBreak, longBreak } = useTimerState();
+const Timer = () => {
+	const { color, mode, pomodoro, shortBreak, longBreak } = useTimerState();
 	const [play, setPlay] = useState(false);
 	const [key, setKey] = useState(0);
 	const [time, setTime] = useState(0);

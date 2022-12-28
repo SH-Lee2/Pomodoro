@@ -2,6 +2,7 @@ import React, { useReducer, useContext, createContext } from "react";
 
 export type Color = "bg-salmon" | "bg-baby-blue" | "bg-heliotrope";
 export type Font = "font-kumbh-sans" | "font-roboto-slab" | "font-space-mono";
+export type Mode = "pomodoro" | "shortBreak" | "longBreak";
 
 type State = {
 	color: Color;
@@ -9,6 +10,7 @@ type State = {
 	pomodoro: number;
 	shortBreak: number;
 	longBreak: number;
+	mode: Mode;
 };
 
 interface contextType extends State {
@@ -17,6 +19,7 @@ interface contextType extends State {
 	setPomodoro: (pomodoro: number) => void;
 	setShortBreak: (shortBreak: number) => void;
 	setLongBreak: (longBreak: number) => void;
+	setMode: (mode: Mode) => void;
 }
 
 type Action =
@@ -24,7 +27,8 @@ type Action =
 	| { type: "SET_COLOR"; color: Color }
 	| { type: "SET_POMODORO"; pomodoro: number }
 	| { type: "SET_SHORT_BREAK"; shortBreak: number }
-	| { type: "SET_LONG_BREAK"; longBreak: number };
+	| { type: "SET_LONG_BREAK"; longBreak: number }
+	| { type: "SET_MODE"; mode: Mode };
 
 const TimerStateContext = createContext<contextType | null>(null);
 
@@ -55,7 +59,11 @@ const reducer = (state: State, action: Action): State => {
 				...state,
 				longBreak: state.longBreak + action.longBreak,
 			};
-
+		case "SET_MODE":
+			return {
+				...state,
+				mode: action.mode,
+			};
 		default:
 			throw new Error("Unhandled action");
 	}
@@ -68,6 +76,7 @@ export function StyleProvider({ children }: { children: React.ReactNode }) {
 		pomodoro: 25,
 		shortBreak: 5,
 		longBreak: 15,
+		mode: "pomodoro",
 	});
 
 	const setColor = (color: Color) => {
@@ -90,6 +99,10 @@ export function StyleProvider({ children }: { children: React.ReactNode }) {
 		dispatch({ type: "SET_LONG_BREAK", longBreak });
 	};
 
+	const setMode = (mode: Mode) => {
+		dispatch({ type: "SET_MODE", mode });
+	};
+
 	const value: contextType = {
 		...state,
 		setColor,
@@ -97,6 +110,7 @@ export function StyleProvider({ children }: { children: React.ReactNode }) {
 		setPomodoro,
 		setShortBreak,
 		setLongBreak,
+		setMode,
 	};
 	return (
 		<TimerStateContext.Provider value={value}>

@@ -7,9 +7,16 @@ interface Props {
 	play: boolean;
 	setPlay: React.Dispatch<React.SetStateAction<boolean>>;
 	setKey: React.Dispatch<React.SetStateAction<number>>;
+	currentTime: number;
 }
 
-const RenderTime = ({ remainingTime, play, setPlay, setKey }: Props) => {
+const RenderTime = ({
+	remainingTime,
+	play,
+	setPlay,
+	setKey,
+	currentTime,
+}: Props) => {
 	const minutes = Math.floor(remainingTime / 60);
 	const seconds = remainingTime % 60;
 
@@ -27,14 +34,18 @@ const RenderTime = ({ remainingTime, play, setPlay, setKey }: Props) => {
 
 	return (
 		<div className="flex flex-col items-center space-y-3 md:space-y-3.5">
-			<div className="text-[5rem] leading-[6.625rem] text-purple font-bold md:text-[6.25rem] md:leading-[8.187rem]">
+			<div className="text-[5rem] leading-[6.625rem] -tracking-[4px] text-purple font-bold md:text-[6.25rem] md:leading-[8.187rem] md:-tracking-[5px]">
 				{time}
 			</div>
 			<div
 				className="cursor-pointer text-body-1 tracking-[13.125px] text-purple font-bold md:text-base"
 				onClick={playHandler}
 			>
-				{play && remainingTime !== 0 ? "PAUSE" : "RESTART"}
+				{currentTime === remainingTime
+					? "START"
+					: play && remainingTime !== 0
+					? "PAUSE"
+					: "RESTART"}
 			</div>
 		</div>
 	);
@@ -92,6 +103,7 @@ const Timer = () => {
 					<RenderTime
 						remainingTime={remainingTime}
 						play={play}
+						currentTime={time}
 						setPlay={setPlay}
 						setKey={setKey}
 					/>

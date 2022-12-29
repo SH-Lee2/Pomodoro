@@ -1,5 +1,6 @@
 import { Tab } from "@headlessui/react";
-import { Mode, useTimerState } from "../context/TimerContext";
+import { useTimerState } from "../context/TimerContext";
+import { Mode } from "../types";
 
 interface Tabs {
 	tab: string;

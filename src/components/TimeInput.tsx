@@ -1,4 +1,3 @@
-import { arrowDownIcon, arrowUpIcon } from "../assets";
 import { useTimerState } from "../context/TimerContext";
 
 const TimeInput = () => {

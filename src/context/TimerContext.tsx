@@ -1,30 +1,10 @@
-import React, { useReducer, useContext, createContext } from "react";
-
-export type Color = "bg-salmon" | "bg-baby-blue" | "bg-heliotrope";
-export type Font = "font-kumbh-sans" | "font-roboto-slab" | "font-space-mono";
-export type Mode = "pomodoro" | "shortBreak" | "longBreak";
-
-interface State {
-	color: Color;
-	font: Font;
-	mode: Mode;
-	timer: {
-		[key: string]: number;
-	};
-}
-
-interface contextType extends State {
-	setColor: (color: Color) => void;
-	setFont: (font: Font) => void;
-	setMode: (mode: Mode) => void;
-	setTimer: (name: string, time: number) => void;
-}
-
-type Action =
-	| { type: "SET_FONT"; font: Font }
-	| { type: "SET_COLOR"; color: Color }
-	| { type: "SET_MODE"; mode: Mode }
-	| { type: "SET_TIMER"; name: string; time: number };
+import React, {
+	useReducer,
+	useContext,
+	createContext,
+	useCallback,
+} from "react";
+import { Action, Color, contextType, Font, Mode, State } from "../types";
 
 const TimerStateContext = createContext<contextType | null>(null);
 
@@ -70,21 +50,21 @@ export function StyleProvider({ children }: { children: React.ReactNode }) {
 		},
 	});
 
-	const setColor = (color: Color) => {
+	const setColor = useCallback((color: Color) => {
 		dispatch({ type: "SET_COLOR", color });
-	};
+	}, []);
 
-	const setFont = (font: Font) => {
+	const setFont = useCallback((font: Font) => {
 		dispatch({ type: "SET_FONT", font });
-	};
+	}, []);
 
-	const setMode = (mode: Mode) => {
+	const setMode = useCallback((mode: Mode) => {
 		dispatch({ type: "SET_MODE", mode });
-	};
+	}, []);
 
-	const setTimer = (name: string, time: number) => {
+	const setTimer = useCallback((name: string, time: number) => {
 		dispatch({ type: "SET_TIMER", name, time });
-	};
+	}, []);
 
 	const value: contextType = {
 		...state,

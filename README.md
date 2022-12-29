@@ -31,7 +31,7 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
+- Solution URL: [https://www.frontendmentor.io/solutions/pomodoro-app-g0czRqYRvU](https://www.frontendmentor.io/solutions/pomodoro-app-g0czRqYRvU)
 - Live Site URL: [https://pomodoro-lsh.vercel.app/](https://pomodoro-lsh.vercel.app/)
 
 ## My process

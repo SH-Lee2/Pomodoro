@@ -61,7 +61,7 @@ const RenderTime = ({
 };
 
 const Timer = () => {
-	const { color, mode, pomodoro, shortBreak, longBreak } = useTimerState();
+	const { color, mode, timer } = useTimerState();
 	const [play, setPlay] = useState(false);
 	const [key, setKey] = useState(0);
 	const [time, setTime] = useState(0);
@@ -88,9 +88,9 @@ const Timer = () => {
 	}, []);
 
 	useEffect(() => {
-		if (mode === "pomodoro") setTime(pomodoro * 60);
-		if (mode === "shortBreak") setTime(shortBreak * 60);
-		if (mode === "longBreak") setTime(longBreak * 60);
+		if (mode === "pomodoro") setTime(timer.pomodoro * 60);
+		if (mode === "shortBreak") setTime(timer.shortBreak * 60);
+		if (mode === "longBreak") setTime(timer.longBreak * 60);
 		setKey((pre) => pre + 1);
 		setPlay(false);
 		return;

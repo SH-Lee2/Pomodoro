@@ -4,31 +4,27 @@ export type Color = "bg-salmon" | "bg-baby-blue" | "bg-heliotrope";
 export type Font = "font-kumbh-sans" | "font-roboto-slab" | "font-space-mono";
 export type Mode = "pomodoro" | "shortBreak" | "longBreak";
 
-type State = {
+interface State {
 	color: Color;
 	font: Font;
-	pomodoro: number;
-	shortBreak: number;
-	longBreak: number;
 	mode: Mode;
-};
+	timer: {
+		[key: string]: number;
+	};
+}
 
 interface contextType extends State {
 	setColor: (color: Color) => void;
 	setFont: (font: Font) => void;
-	setPomodoro: (pomodoro: number) => void;
-	setShortBreak: (shortBreak: number) => void;
-	setLongBreak: (longBreak: number) => void;
 	setMode: (mode: Mode) => void;
+	setTimer: (name: string, time: number) => void;
 }
 
 type Action =
 	| { type: "SET_FONT"; font: Font }
 	| { type: "SET_COLOR"; color: Color }
-	| { type: "SET_POMODORO"; pomodoro: number }
-	| { type: "SET_SHORT_BREAK"; shortBreak: number }
-	| { type: "SET_LONG_BREAK"; longBreak: number }
-	| { type: "SET_MODE"; mode: Mode };
+	| { type: "SET_MODE"; mode: Mode }
+	| { type: "SET_TIMER"; name: string; time: number };
 
 const TimerStateContext = createContext<contextType | null>(null);
 
@@ -44,25 +40,18 @@ const reducer = (state: State, action: Action): State => {
 				...state,
 				color: action.color,
 			};
-		case "SET_POMODORO":
-			return {
-				...state,
-				pomodoro: state.pomodoro + action.pomodoro,
-			};
-		case "SET_SHORT_BREAK":
-			return {
-				...state,
-				shortBreak: state.shortBreak + action.shortBreak,
-			};
-		case "SET_LONG_BREAK":
-			return {
-				...state,
-				longBreak: state.longBreak + action.longBreak,
-			};
 		case "SET_MODE":
 			return {
 				...state,
 				mode: action.mode,
+			};
+		case "SET_TIMER":
+			if (action.time > 60 || action.time < 0 || isNaN(action.time))
+				return state;
+			const newTimer = { ...state.timer, [action.name]: action.time };
+			return {
+				...state,
+				timer: newTimer,
 			};
 		default:
 			throw new Error("Unhandled action");
@@ -73,10 +62,12 @@ export function StyleProvider({ children }: { children: React.ReactNode }) {
 	const [state, dispatch] = useReducer(reducer, {
 		color: "bg-salmon",
 		font: "font-kumbh-sans",
-		pomodoro: 25,
-		shortBreak: 5,
-		longBreak: 15,
 		mode: "pomodoro",
+		timer: {
+			pomodoro: 25,
+			shortBreak: 5,
+			longBreak: 15,
+		},
 	});
 
 	const setColor = (color: Color) => {
@@ -87,30 +78,20 @@ export function StyleProvider({ children }: { children: React.ReactNode }) {
 		dispatch({ type: "SET_FONT", font });
 	};
 
-	const setPomodoro = (pomodoro: number) => {
-		dispatch({ type: "SET_POMODORO", pomodoro });
-	};
-
-	const setShortBreak = (shortBreak: number) => {
-		dispatch({ type: "SET_SHORT_BREAK", shortBreak });
-	};
-
-	const setLongBreak = (longBreak: number) => {
-		dispatch({ type: "SET_LONG_BREAK", longBreak });
-	};
-
 	const setMode = (mode: Mode) => {
 		dispatch({ type: "SET_MODE", mode });
+	};
+
+	const setTimer = (name: string, time: number) => {
+		dispatch({ type: "SET_TIMER", name, time });
 	};
 
 	const value: contextType = {
 		...state,
 		setColor,
 		setFont,
-		setPomodoro,
-		setShortBreak,
-		setLongBreak,
 		setMode,
+		setTimer,
 	};
 	return (
 		<TimerStateContext.Provider value={value}>

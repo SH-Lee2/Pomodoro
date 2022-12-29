@@ -44,7 +44,7 @@ const TimeInput = () => {
 								id="timer-duration"
 								value={time}
 								onChange={(e) => setTimer(name, +e.target.value)}
-								className="relative outline-none border-none text-hawkes-blue text-body-1 bg-silver rounded-[10px] py-[11px] pl-4 w-[8.75rem] focus:bg-red-600"
+								className="relative outline-none border-none text-hawkes-blue text-body-1 bg-silver rounded-[10px] py-[11px] pl-4 w-[8.75rem]"
 							/>
 							<div className="absolute top-[10px] right-4 space-y-2">
 								<svg

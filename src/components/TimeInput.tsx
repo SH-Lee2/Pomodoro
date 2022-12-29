@@ -1,9 +1,10 @@
+import { useEffect, useRef } from "react";
 import { arrowDownIcon, arrowUpIcon } from "../assets";
 import { useTimerState } from "../context/TimerContext";
 
 const TimeInput = () => {
 	const { timer, setTimer } = useTimerState();
-
+	const inputRef = useRef<HTMLInputElement>(null);
 	const timeInput = [
 		{
 			label: "pomodoro",
@@ -21,6 +22,10 @@ const TimeInput = () => {
 			name: "longBreak",
 		},
 	];
+
+	useEffect(() => {
+		inputRef.current && inputRef.current.blur();
+	}, []);
 
 	return (
 		<div className="px-6 pt-6 space-y-[18px] md:px-10">
@@ -43,7 +48,7 @@ const TimeInput = () => {
 							<input
 								type="text" // number 하면 0이 안없어짐
 								id="timer-duration"
-								autoFocus={false}
+								ref={inputRef}
 								value={time}
 								onChange={(e) => setTimer(name, +e.target.value)}
 								className="relative outline-none border-none text-hawkes-blue text-body-1 bg-silver rounded-[10px] py-[11px] pl-4 w-[8.75rem]"

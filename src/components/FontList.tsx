@@ -30,7 +30,7 @@ function FontList() {
 							<RadioGroup.Option key={font} value={font}>
 								{({ checked }) => (
 									<li
-										className={`list-none cursor-pointer flex items-center justify-center rounded-full w-[2.5rem] h-[2.5rem] ${font} ${
+										className={`list-none cursor-pointer flex items-center justify-center rounded-full w-[2.5rem] h-[2.5rem] transition-all duration-300 hover:ring-1 hover:ring-black-russian/20 hover:ring-offset-4 ${font} ${
 											checked
 												? "bg-black-russian text-white"
 												: "bg-silver text-hawkes-blue/70"

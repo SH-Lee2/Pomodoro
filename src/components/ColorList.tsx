@@ -28,7 +28,7 @@ const ColorList = () => {
 							<RadioGroup.Option key={color} value={color}>
 								{({ checked }) => (
 									<li
-										className={`list-none cursor-pointer flex items-center justify-center rounded-full w-[2.5rem] h-[2.5rem] ${color}`}
+										className={`list-none cursor-pointer flex items-center justify-center rounded-full w-[2.5rem] h-[2.5rem] ${color} transition-all duration-150 hover:scale-110`}
 									>
 										{checked && (
 											<img

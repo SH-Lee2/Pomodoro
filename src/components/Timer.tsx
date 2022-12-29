@@ -39,7 +39,6 @@ const Timer = () => {
 		return;
 	}, [mode, timer]);
 
-	console.log(timer);
 	return (
 		<div className="rounded-full bg-primary-gradient p-5">
 			<CountdownCircleTimer

@@ -43,6 +43,7 @@ const TimeInput = () => {
 							<input
 								type="text" // number 하면 0이 안없어짐
 								id="timer-duration"
+								autoFocus={false}
 								value={time}
 								onChange={(e) => setTimer(name, +e.target.value)}
 								className="relative outline-none border-none text-hawkes-blue text-body-1 bg-silver rounded-[10px] py-[11px] pl-4 w-[8.75rem]"

@@ -63,6 +63,7 @@ const TimeInput = () => {
 									width="14"
 									height="7"
 									className="cursor-pointer"
+									onClick={() => setTimer(name, time - 1)}
 								>
 									<path
 										className="stroke-hawkes-blue/25 stroke-2 fill-none group-hover:stroke-hawkes-blue"
